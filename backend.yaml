@@ -8,10 +8,13 @@
   - name: enable the 20 version of node JS
     ansible.builtin.command: dnf module enable nodejs:20 -y
 
-  - name: install the nodeJS
+  - name: install nodejs
     ansible.builtin.package:
-     name: nodeJS
-     state: installed
+      name: "{{ item }}"
+      state: present
+    loop:
+    - nodejs
+    - mysql
 
   - name: create a expense user
     ansible.builtin.user:
