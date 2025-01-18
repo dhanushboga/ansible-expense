@@ -1,0 +1,5 @@
+- name: configure the nginx frontend server
+  hosts:
+  become: yes
+  tasks:
+  - name: 
