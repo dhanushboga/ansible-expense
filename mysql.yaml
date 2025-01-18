@@ -3,6 +3,7 @@
   become: yes
   vars:
    root_password: ExpenseApp@1
+
   tasks:
   - name: Install the mysql-server
     ansible.builtin.package:
@@ -16,11 +17,12 @@
      enabled: yes
 
 
-  - name: set the root password
+  - name: need to connect to mysql
     community.mysql.mysql_info:
      login_user: root
-     login_password: {{ root_password }}
-
+     login_password: "{{ root_password }}"
+     login_host: mysql.chenchudaws82s.online
+    
   
      
 
