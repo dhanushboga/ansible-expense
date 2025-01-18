@@ -5,6 +5,12 @@
    root_password: ExpenseApp@1
 
   tasks:
+
+  - name: installing the python libraries
+    ansible.builtin.pip:
+     name: PyMySQL
+     executable: pip3.9 
+
   - name: Install the mysql-server
     ansible.builtin.package:
      name: mysql-server
