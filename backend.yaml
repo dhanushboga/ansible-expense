@@ -1,5 +1,5 @@
 - name: configure the nodeJS backend server
-  hosts:
+  hosts: backend
   become: yes
   tasks:
   - name: diable the old nodeJS
