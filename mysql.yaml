@@ -1,6 +1,8 @@
 - name: configure the mysql DB server
   hosts: mysql
   become: yes
+  vars:
+   root_password: ExpenseApp@1
   tasks:
   - name: Install the mysql-server
     ansible.builtin.package:
@@ -12,4 +14,13 @@
      name: mysqld
      state: started
      enabled: yes
+
+
+  - name: set the root password
+    community.mysql.mysql_info:
+     login_user: root
+     login_password: {{ root_password }}
+
+  
+     
 
