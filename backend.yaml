@@ -1,6 +1,8 @@
 - name: configuration of backend server
   hosts: backend
   become: yes
+  vars:
+    mysql_password: ExpenseApp@1
   tasks: 
   - name: disable the nodejs
     ansible.builtin.command: dnf module disable nodejs -y
@@ -10,8 +12,11 @@
 
   - name: install the nodejs
     ansible.builtin.package:
-     name: nodejs
+     name: "{{ item }}"
      state: present
+    loop:
+    - nodejs
+    - mysql
 
   - name: Adding the expense user
     ansible.builtin.user:
@@ -37,6 +42,12 @@
   - name: install dependecies
     community.general.npm:
      path: /app
+
+  - name: copy the backend.service
+    ansible.builtin.copy:
+     src: backend.service
+     dest: /etc/systemd/system/backend.service
+     
 
   - name: import mysql data
     community.mysql.mysql_db:
