@@ -10,14 +10,14 @@
      executable: pip3.9
     loop:
     - PyMySQL
-    
+    - cryptpgraphy
 
   - name: install the mysql-server
     ansible.builtin.package:
      name: mysql-server
      state: present
 
-  - name: Start the mysqld service
+  - name: Start and enable the mysqld service
     ansible.builtin.service:
      name: mysqld
      state: started
