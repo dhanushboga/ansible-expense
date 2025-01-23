@@ -18,11 +18,10 @@
   - name: install the python packages
     ansible.builtin.pip:
      name: PyMySQL
-     executable: pip3.7
-     state: present
+     executable: pip3.9
      
-
-  - name: setting the mysql password
+  - name: connect the mysql server
     community.mysql.mysql_info:
      login_user: root
      login_password: "{{ mysql_password }}"
+     login_host: "mysql.chenchudaws82s.online"
