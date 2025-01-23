@@ -4,6 +4,14 @@
   vars:
    mysql_password: "ExpenseApp@1"
   tasks:
+  - name: install the mysql libraries
+    ansible.builtin.pip:
+     name: "{{ item }}"
+     executable: pip3.9
+     loop:
+     - PyMySQL
+     - cryptography
+
   - name: install the mysql-server
     ansible.builtin.package:
      name: mysql-server
@@ -14,14 +22,6 @@
      name: mysqld
      state: started
      enabled: yes
-
-  - name: install the python packages
-    ansible.builtin.pip:
-     name: "{{ item }}"
-     executable: pip3.9
-     loop:
-     - PyMySQL
-     - cryptography
 
   - name: connect the mysql server
     community.mysql.mysql_info:
